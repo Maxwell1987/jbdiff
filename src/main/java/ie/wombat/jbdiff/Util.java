@@ -27,11 +27,13 @@
 
 package ie.wombat.jbdiff;
 
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
 /**
@@ -94,5 +96,17 @@ public class Util {
 		GZIPOutputStream gzOut = new GZIPOutputStream(out);
 		gzOut.write(buf, off, len);
 		gzOut.finish();
+	}
+
+	public static final GZIPInputStream newGZIPInputStream(File file, long offset) throws IOException {
+		FileInputStream in = new FileInputStream(file);
+		in.skip(offset);
+		return new GZIPInputStream(in);
+	}
+
+	public static final DataInputStream newDataInputStream(File file, long offset) throws IOException {
+		FileInputStream in = new FileInputStream(file);
+		in.skip(offset);
+		return new DataInputStream(new GZIPInputStream(in));
 	}
 }
