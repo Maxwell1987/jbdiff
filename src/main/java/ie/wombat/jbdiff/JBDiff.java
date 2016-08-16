@@ -494,8 +494,8 @@ public class JBDiff {
 		gzOut = new GZIPOutputStream(diffOut);
 		gzOut.write(eb, 0, eblen);
 		gzOut.finish();
-		long extraBlockLen = diffOut.size() - diffBlockLen - ctrlBlockLen - 32;
-		//System.err.println ("extraBlockLen=" + extraBlockLen);
+		// long extraBlockLen = diffOut.size() - diffBlockLen - ctrlBlockLen - 32;
+		// System.err.println ("extraBlockLen=" + extraBlockLen);
 		
 		diffOut.close();
 		

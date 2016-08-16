@@ -35,6 +35,7 @@ import java.io.FileOutputStream;
 import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Objects;
 import java.util.zip.GZIPInputStream;
 
 /**
@@ -76,6 +77,8 @@ public class JBPatch {
 		// headerMagic at header offset 0 (length 8 bytes)
 		long headerMagic = diffIn.readLong();
 
+		Objects.nonNull(headerMagic);
+		
 		// ctrlBlockLen after gzip compression at heater offset 8 (length 8 bytes)
 		long ctrlBlockLen = diffIn.readLong();
 
@@ -115,7 +118,6 @@ public class JBPatch {
 		oldpos = 0;
 		newpos = 0;
 		int[] ctrl = new int[3];
-		int nbytes;
 		while (newpos < newsize) {
 
 			for (int i = 0; i <= 2; i++) {
@@ -185,6 +187,8 @@ public class JBPatch {
 		// headerMagic at header offset 0 (length 8 bytes)
 		long headerMagic = diffIn.readLong();
 
+		Objects.nonNull(headerMagic);
+
 		// ctrlBlockLen after gzip compression at heater offset 8 (length 8 bytes)
 		long ctrlBlockLen = diffIn.readLong();
 
@@ -223,7 +227,6 @@ public class JBPatch {
 		newpos = 0;
 		int[] ctrl = new int[3];
 		byte[] newBuf;
-		int nbytes;
 		while (newpos < newsize) {
 
 			for (int i = 0; i <= 2; i++) {
