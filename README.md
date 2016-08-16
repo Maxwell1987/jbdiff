@@ -1,2 +1,0 @@
-# jbdiff
-Java Binary Diff
