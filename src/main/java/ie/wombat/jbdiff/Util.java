@@ -27,10 +27,12 @@
 
 package ie.wombat.jbdiff;
 
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.zip.GZIPOutputStream;
 
 /**
  * @author Joe Desbonnet, jdesbonnet@gmail.com
@@ -86,5 +88,11 @@ public class Util {
 		try (FileInputStream in = new FileInputStream(file)) {
 			readFromStream(in, buf, offset, len);
 		}
+	}
+
+	public static final void writeGZIPStream(DataOutputStream out, byte[] buf, int off, int len) throws IOException {
+		GZIPOutputStream gzOut = new GZIPOutputStream(out);
+		gzOut.write(buf, off, len);
+		gzOut.finish();
 	}
 }
